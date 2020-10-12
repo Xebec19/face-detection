@@ -1,16 +1,21 @@
 import React,{ Component } from 'react';
 import './App.css';
 import Navigation from './components/Navigation/Navigation';
+import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import Clarifai from 'clarifai';
 import Logo from './components/Logo/Logo';
 import Particles from 'react-particles-js';
 import Rank from './components/Rank/Rank.js';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm.js';
 
-const parameter =   {
-                      particles: {
-                                number: {
-                                        value: 30,
-                                        density: {
+const app = new Clarifai.App({
+  apiKey: 'b689f4732239456fab898e84d719eb88'
+});
+const parameter ={
+                particles: {
+                          number: {
+                                 value: 30,
+                                 density: {
                                                 enable: true,
                                                 value_area: 800
                                                   }
@@ -23,12 +28,29 @@ class App extends Component {
     super();
     this.state = {
       input: '',
+      imageUrl: ''
     }
   }
 
   onInputChange = (event) => 
   {
-    console.log(event.target.value);
+    this.setState({input: event.target.value});
+  }
+
+  onButtonSubmit = () => 
+  {
+    this.setState({imageUrl: this.state.input});
+    app.models.predict(
+    Clarifai.FACE_DETECT_MODEL,
+    this.state.input)
+    .then(
+    function(response){
+      console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
+    },
+    function(err){
+
+    }
+    );
   }
 
   render(){
@@ -39,9 +61,11 @@ class App extends Component {
      <Navigation />
      <Logo />
      <Rank />
-     <ImageLinkForm onInputChange={this.onInputChange}/>
-{/*     <FaceRecognition />
-*/} 
+     <ImageLinkForm 
+     onInputChange={this.onInputChange} 
+     onButtonSubmit={this.onButtonSubmit}
+     />
+     <FaceRecognition imageUrl={this.state.imageUrl}/>
      </div>
   );
 }
