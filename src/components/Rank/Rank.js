@@ -1,12 +1,15 @@
 import React,{Component} from 'react';
+import './Rank.css'
 import'tachyons';
 const Rank = () => {
 	return(
-		<div className='white'>
-		<div className='white f3'>
+		<div className=''>
+		<div className=' f3 primaryfont'>
 		{'User your current rank is..'}
 		</div>
+		<h1>
 		{'#1'}
+		</h1>
 		</div>
 		);
 }
