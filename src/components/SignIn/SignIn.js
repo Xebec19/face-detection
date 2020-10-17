@@ -50,11 +50,11 @@ const SignIn = ( { onRouteChange} ) => {
     </div>
     <div 
     className="lh-copy mt3">
-      <a 
-      href="#0" 
+      <p 
+       onClick = {() => onRouteChange('register')}
       className="f6 link dim black db">
       Register
-      </a>
+      </p>
     </div>
   </form>
 </main>
