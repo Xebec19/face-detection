@@ -53,7 +53,7 @@ class App extends Component {
 
   displayFaceBox = (box) => 
   {
-    console.log(box);
+  //  console.log(box);
     this.setState({box: box});
   }
 
@@ -73,8 +73,9 @@ class App extends Component {
     .catch(err => console.log(err));
   }
 
-  onRouteChange = () => {
-    this.setState({route: 'home'});
+  onRouteChange = () => 
+  {
+    this.setState.route = 'signin';
   }
 
   render(){
@@ -82,7 +83,7 @@ class App extends Component {
     <div className="App">
      <Particles className='particles' 
                 params={parameter} />
-     <Navigation />
+     <Navigation onRouteChange={this.onRouteChange}/>
      {
      this.state.route === 'signin'
      ? <SignIn onRouteChange = {this.onRouteChange}/>

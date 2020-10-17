@@ -1,6 +1,6 @@
 import React from 'react';
 import'tachyons';
-const SignIn = ( { onRouteChange} ) => {
+const Register = ( { onRouteChange} ) => {
 	return(
 		<article 
 		className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6  shadow center">
@@ -43,7 +43,7 @@ const SignIn = ( { onRouteChange} ) => {
     </fieldset>
     <div className="">
       <input 
-      onClick = {() => onRouteChange('home')}
+      onClick = {onRouteChange('home')}
       className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
       type="submit" 
       value="Sign in"/>
@@ -62,4 +62,4 @@ const SignIn = ( { onRouteChange} ) => {
 );
 }
 
-export default SignIn;
+export default Register;
