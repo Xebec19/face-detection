@@ -1,16 +1,18 @@
 import React,{Component} from 'react';
 import './Rank.css'
 import'tachyons';
-const Rank = () => {
+class Rank extends React.Component{
+	render(){
 	return(
 		<div className=''>
 		<div className=' f3 primaryfont'>
-		{'User your current rank is..'}
+		{`Hello ${this.props.user.name}`}
 		</div>
 		<h1>
-		{'#1'}
+		{this.props.user.email}
 		</h1>
 		</div>
-		);
-}
+		);  //return ends here
+}  //render ends here
+}  //class ends here
 export default Rank;

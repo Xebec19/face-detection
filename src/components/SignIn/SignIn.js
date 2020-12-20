@@ -11,6 +11,7 @@
                 
                 this.handleEmail = this.handleEmail.bind(this); //bind the func to handle this in callback
                 this.handlePassword = this.handlePassword.bind(this); //bind the func to handle this in callback
+                this.handleSubmit = this.handleSubmit.bind(this);
                 }
                 
                 handleEmail(e)  {  //to hold email of user
@@ -26,9 +27,8 @@
                 console.log(this.state.password);  //print value in console
                 }
                 
-                handleSubmit(e) {
-                e.preventDefault();
-                fetch('https://localhost:3000/login',{
+                handleSubmit() {
+                fetch('http://localhost:3000/login',{
                 method:'POST',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify({
@@ -36,9 +36,15 @@
                 password: this.state.password
                 })
                 }) //fetch ends here
-                .then(resp => resp.json)
+                .then(resp => resp.json())
                 .then(resp => {
                 console.log(resp)
+                this.props.onRouteChange('home')
+                this.props.loadUser(resp)
+                })
+                .catch(err => {
+                        alert('Error!!!');
+                        console.log(err);
                 })
                 }  //handleSubmit ends here 
                 
