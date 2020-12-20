@@ -1,10 +1,22 @@
 import React from 'react';
 import'tachyons';
-const Navigation = ({onRouteChange, isSignedIn }) => {
-		if(isSignedIn){
+class Navigation extends React.Component{
+	
+	constructor(){
+		super();
+		this.handleSignOut = this.handleSignOut.bind(this);
+	}  //constructor ends here
+
+	handleSignOut = () => {
+		this.props.onRouteChange('signin');
+		window.location.reload();
+	}
+	render(){
+		const {onRouteChange,route} = this.props;
+		if(route === 'home'){
 			return(
 		<nav style={{display:'flex',justifyContent:'flex-end'}}>
-		<p onClick = {() => onRouteChange('signout')} className='f3 link dim black underline pa3 pointer white'>Sign Out</p>
+		<p onClick = {this.handleSignOut} className='f3 link dim black underline pa3 pointer white' >Sign Out</p>
 		</nav>
 		)
 		}
@@ -17,6 +29,7 @@ const Navigation = ({onRouteChange, isSignedIn }) => {
 			</nav>
 			)
 			
-		}
-}
+		}  //else ends here
+}  //render ends here
+}  //class ends here
 export default Navigation;
