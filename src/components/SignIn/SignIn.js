@@ -28,7 +28,7 @@
                 }
                 
                 handleSubmit() {
-                fetch('http://localhost:3000/login',{
+                fetch('https://hidden-spire-91414.herokuapp.com/login',{
                 method:'POST',
                 headers: {'Content-Type':'application/json'},
                 body: JSON.stringify({
@@ -39,8 +39,10 @@
                 .then(resp => resp.json())
                 .then(resp => {
                 console.log(resp)
-                this.props.onRouteChange('home')
-                this.props.loadUser(resp)
+                if(resp.email){
+                this.props.loadUser(resp);
+                this.props.onRouteChange('home');
+                }else{alert('Error!!!')}
                 })
                 .catch(err => {
                         alert('Error!!!');
