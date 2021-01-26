@@ -11,7 +11,7 @@ import Rank from './components/Rank/Rank.js';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm.js';
 
 const app = new Clarifai.App({
-  apiKey: 'b689f4732239456fab898e84d719eb88'
+  apiKey: YOUR API KEY
 });
 const parameter ={
                 particles: {
